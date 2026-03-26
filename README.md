@@ -34,7 +34,15 @@ cd Judgebox
 ```bash
 docker compose up --build -d
 ```
-The application will be accessible at `http://127.0.0.1:8000/`.
+The application will be accessible at `http://127.0.0.1:8001/`.
+
+**Static Files:**
+Static files (CSS, JS) are served directly by WhiteNoise through the Django application. The Docker setup automatically runs `collectstatic --noinput` on startup.
+To rebuild and restart the web container after making static file changes or installing new packages:
+```bash
+docker compose build web
+docker compose up -d web
+```
 
 ### 4. Fresh Start & Dev DB Workflow
 To completely wipe your local database and start fresh with sample data:
