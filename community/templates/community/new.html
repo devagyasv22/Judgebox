@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}New post — Community{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="oj-card p-4">
+      <h1 class="h3 mb-3">Create a post</h1>
+
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label" for="id_title">Title</label>
+          {{ form.title|add_class:"form-control" }}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="id_body">Body</label>
+          {{ form.body|add_class:"form-control" }}
+          <div class="small text-muted mt-1">Markdown support can be added later; for now, use plain text.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="id_tags">Tags</label>
+          {{ form.tags|add_class:"form-control" }}
+          <div class="small text-muted mt-1">Comma-separated. Example: dp, graphs, help</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="id_problem">Link to problem (optional)</label>
+          {{ form.problem|add_class:"form-select" }}
+        </div>
+
+        <button type="submit" class="btn btn-oj-primary">Publish</button>
+        <a class="btn btn-outline-secondary ms-2" href="{% url 'community_list' %}">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

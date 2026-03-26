@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contests — JudgeBox{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/contest.css' %}">{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-4">
+  <div>
+    <h1 class="h2 mb-1">Contests</h1>
+    <p class="text-muted mb-0">Register, compete, and climb the standings.</p>
+  </div>
+  <div class="btn-group" role="group" aria-label="Sort">
+    <a class="btn btn-sm btn-outline-secondary {% if sort == 'start' %}active{% endif %}" href="?tab={{ tab }}&sort=start">By date</a>
+    <a class="btn btn-sm btn-outline-secondary {% if sort == 'duration' %}active{% endif %}" href="?tab={{ tab }}&sort=duration">Duration</a>
+    <a class="btn btn-sm btn-outline-secondary {% if sort == 'title' %}active{% endif %}" href="?tab={{ tab }}&sort=title">Name</a>
+  </div>
+</div>
+
+{% if featured %}
+<div id="feat-carousel" class="carousel slide contest-hero mb-4" data-bs-ride="carousel" aria-label="Featured contests">
+  <div class="carousel-inner">
+    {% for c in featured %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <div class="p-3 d-flex flex-column flex-md-row justify-content-between gap-3 align-items-start">
+        <div>
+          <span class="badge bg-secondary">{{ c.contest_type }}</span>
+          <h2 class="h4 mt-2 mb-1">{{ c.title }}</h2>
+          <p class="text-muted small mb-0">{{ c.start_time }} · {{ c.duration_minutes }} min</p>
+        </div>
+        <a class="btn btn-oj-primary" href="{% url 'contest_detail' c.id %}">Details</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<ul class="nav nav-pills mb-3 flex-wrap gap-1" role="tablist">
+  <li class="nav-item"><a class="nav-link {% if tab == 'all' %}active{% endif %}" href="?tab=all">All</a></li>
+  <li class="nav-item"><a class="nav-link {% if tab == 'upcoming' %}active{% endif %}" href="?tab=upcoming">Upcoming</a></li>
+  <li class="nav-item"><a class="nav-link {% if tab == 'running' %}active{% endif %}" href="?tab=running">Running</a></li>
+  <li class="nav-item"><a class="nav-link {% if tab == 'ended' %}active{% endif %}" href="?tab=ended">Ended</a></li>
+</ul>
+
+<div class="row g-3">
+  {% for c in contests %}
+  <div class="col-md-6 col-xl-4">
+    <article class="oj-card h-100 p-3 d-flex flex-column">
+      <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+        <div>
+          <span class="badge rounded-pill bg-dark border border-secondary">{{ c.contest_type }}</span>
+          <h2 class="h5 mt-2 mb-1"><a href="{% url 'contest_detail' c.id %}">{{ c.title }}</a></h2>
+        </div>
+      </div>
+      <p class="text-muted small flex-grow-1">{{ c.description|truncatewords:22|default:"No description." }}</p>
+      <div class="small text-muted mb-2">
+        <div><i class="fa-regular fa-clock me-1" aria-hidden="true"></i>{{ c.start_time }} → {{ c.end_time }}</div>
+        <div><i class="fa-solid fa-list me-1" aria-hidden="true"></i>{{ c.problems.count }} problems · {{ c.duration_minutes }} min</div>
+      </div>
+      <div class="d-flex flex-wrap gap-2 mt-auto">
+        {% if c.end_time < now %}
+        <a class="btn btn-sm btn-outline-light" href="{% url 'contest_leaderboard' c.id %}">Standings</a>
+        <a class="btn btn-sm btn-outline-secondary" href="{% url 'contest_submissions' c.id %}">Submissions</a>
+        {% elif c.start_time > now %}
+        <span class="badge text-bg-info align-self-center">Upcoming</span>
+        {% else %}
+        <span class="badge text-bg-success align-self-center">Live</span>
+        {% endif %}
+        <a class="btn btn-sm btn-oj-primary ms-auto" href="{% url 'contest_detail' c.id %}">Open</a>
+      </div>
+    </article>
+  </div>
+  {% empty %}
+  <p class="text-muted">No contests in this tab.</p>
+  {% endfor %}
+</div>
+{% endblock %}

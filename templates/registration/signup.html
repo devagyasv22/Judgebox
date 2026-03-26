@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}Sign Up — JudgeBox{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center" style="padding-top: 60px; padding-bottom: 40px;">
+  <div class="card shadow-lg border-0" style="background-color: #1f1f1f; color: white; max-width: 400px; width: 100%;">
+    <div class="card-header bg-secondary text-white text-center">
+      <h5 class="mb-0">Sign Up</h5>
+    </div>
+    <div class="card-body">
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="alert alert-danger py-2">
+          <ul class="mb-0">
+            {% for field in form %}
+              {% for error in field.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        {% for field in form %}
+        <div class="mb-3">
+          <label class="form-label">{{ field.label }}</label>
+          {{ field|add_class:"form-control bg-dark text-white border-secondary" }}
+          {% if field.help_text %}
+            <small class="form-text text-muted" style="color: #ccc !important;">
+              {{ field.help_text|safe }}
+            </small>
+          {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

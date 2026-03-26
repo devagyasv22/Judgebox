@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Standings — {{ contest.title }}{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/contest.css' %}">{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-2 mb-3">
+  <div>
+    <h1 class="h3 mb-1">Standings</h1>
+    <p class="text-muted small mb-0">{{ contest.title }}</p>
+  </div>
+  <form class="d-flex flex-wrap gap-2" method="get">
+    <label class="visually-hidden" for="lb-q">Search user</label>
+    <input class="form-control form-control-sm" type="search" name="q" id="lb-q" placeholder="User…" value="{{ request.GET.q|default:'' }}">
+    <select class="form-select form-select-sm" name="filter" aria-label="Filter">
+      <option value="all" {% if filter_mode == 'all' %}selected{% endif %}>All</option>
+      <option value="me" {% if filter_mode == 'me' %}selected{% endif %}>Around me</option>
+    </select>
+    <button class="btn btn-sm btn-outline-secondary" type="submit">Apply</button>
+  </form>
+</div>
+
+{% if user.is_authenticated and my_rank %}
+<p class="small text-muted">Your rank: <strong>#{{ my_rank }}</strong></p>
+{% endif %}
+
+<div class="table-responsive oj-card">
+  <table class="table table-dark table-striped table-hover mb-0 standings-table">
+    <thead>
+      <tr>
+        <th scope="col">Rank</th>
+        <th scope="col">User</th>
+        <th scope="col">Solved</th>
+        <th scope="col">Penalty</th>
+      </tr>
+    </thead>
+    <tbody id="standings-body"
+      data-poll-url="{% url 'contest_leaderboard' contest.id %}"
+      data-poll-ms="8000">
+      {% for r in rows %}
+      <tr>
+        <td>{{ r.rank }}</td>
+        <td>{{ r.user.username }}</td>
+        <td>{{ r.solved }} / {{ r.total_problems }}</td>
+        <td>{{ r.penalty }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4" class="text-center text-muted py-4">No submissions yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<p class="small text-muted mt-2">Updates every ~8s while this page is open (simulated live refresh).</p>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/contest.js' %}"></script>{% endblock %}

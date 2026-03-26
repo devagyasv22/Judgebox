@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Community — JudgeBox{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8 text-center py-5">
+    <h1 class="h2 mb-3">Community</h1>
+    <p class="lead oj-text-muted">Discussion forums and announcements will appear here. For now, use the problem pages and contests to connect with the platform.</p>
+    <a class="btn btn-oj-primary" href="{% url 'problem_list' %}">Browse problems</a>
+  </div>
+</div>
+{% endblock %}

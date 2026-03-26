@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Contests{% endblock %}
+{% block content %}
+  <h2>Active Contests</h2>
+  {% if active_contests %}
+    <ul>
+      {% for c in active_contests %}
+        <li><strong>{{ c.title }}</strong><br>{{ c.description|linebreaks }}<br>
+            <small>Ends: {{ c.end_time }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No active contests.</p>
+  {% endif %}
+
+  <h2>Upcoming Contests</h2>
+  {% if upcoming_contests %}
+    <ul>
+      {% for c in upcoming_contests %}
+        <li>{{ c.title }} — Starts: {{ c.start_time }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No upcoming contests.</p>
+  {% endif %}
+
+  <h2>Past Contests</h2>
+  {% if past_contests %}
+    <ul>
+      {% for c in past_contests %}
+        <li>{{ c.title }} — Ended: {{ c.end_time }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No past contests.</p>
+  {% endif %}
+{% endblock %}

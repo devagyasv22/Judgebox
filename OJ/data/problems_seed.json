@@ -1,0 +1,2130 @@
+[
+  {
+    "title": "Sum of Two Integers",
+    "statement": "Given two integers a and b, output their sum.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a+b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "8",
+    "difficulty": "easy",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "8",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "10 12",
+        "expected_output": "22",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 4
+      },
+      {
+        "input": "-7 -8",
+        "expected_output": "-15",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 5
+      }
+    ]
+  },
+  {
+    "title": "Even or Odd",
+    "statement": "Given an integer n, output 'Even' if n is even, otherwise output 'Odd'.",
+    "input_format": "Single integer n.",
+    "output_format": "Output 'Even' or 'Odd'.",
+    "constraints": "-1000000000000000000 <= n <= 1000000000000000000",
+    "sample_input": "0",
+    "sample_output": "Even",
+    "difficulty": "easy",
+    "tags": "math, parity",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "0",
+        "expected_output": "Even",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "1",
+        "expected_output": "Odd",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "2",
+        "expected_output": "Even",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      },
+      {
+        "input": "-1",
+        "expected_output": "Odd",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 4
+      },
+      {
+        "input": "1000000000000000000",
+        "expected_output": "Even",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 5
+      }
+    ]
+  },
+  {
+    "title": "Sum Task #3",
+    "statement": "Given two integers a and b, output their sum.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a+b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "8",
+    "difficulty": "easy",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "8",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Difference Task #4",
+    "statement": "Given two integers a and b, output their difference a-b.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a-b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "-2",
+    "difficulty": "easy",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "-2",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Product Task #5",
+    "statement": "Given two integers a and b, output their product a*b.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a*b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "15",
+    "difficulty": "easy",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "15",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Maximum Task #6",
+    "statement": "Given two integers a and b, output the larger of the two.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: max(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "5",
+    "difficulty": "easy",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "5",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Minimum Task #7",
+    "statement": "Given two integers a and b, output the smaller of the two.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: min(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "3",
+    "difficulty": "easy",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "3",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Absolute Difference Task #8",
+    "statement": "Given two integers a and b, output |a-b|.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: abs(a-b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "2",
+    "difficulty": "easy",
+    "tags": "math, absolute",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "2",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "GCD Task #9",
+    "statement": "Given two integers a and b, output their greatest common divisor.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: gcd(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "1",
+    "difficulty": "easy",
+    "tags": "math, number theory",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "1",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "LCM Task #10",
+    "statement": "Given two integers a and b, output their least common multiple.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: lcm(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "15",
+    "difficulty": "easy",
+    "tags": "math, number theory",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "15",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Square Sum Task #11",
+    "statement": "Given two integers a and b, output a^2 + b^2.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a*a + b*b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "34",
+    "difficulty": "easy",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "34",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Comparison Task #12",
+    "statement": "Given two integers a and b, output 'Greater' if a>b, 'Less' if a<b, and 'Equal' otherwise.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Greater, Less, or Equal.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Less",
+    "difficulty": "easy",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Less",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Less",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Equal",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Parity of Sum Task #13",
+    "statement": "Given two integers a and b, output 'Even' if a+b is even, otherwise output 'Odd'.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Even or Odd.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Even",
+    "difficulty": "easy",
+    "tags": "math, parity",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Even",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Odd",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Even",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Sign of Sum Task #14",
+    "statement": "Given two integers a and b, output 'Positive' if a+b>0, 'Zero' if a+b==0, and 'Negative' otherwise.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Positive, Zero, or Negative.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Positive",
+    "difficulty": "easy",
+    "tags": "math, signs",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Positive",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Negative",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Positive",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Sum Task #15",
+    "statement": "Given two integers a and b, output their sum.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a+b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "8",
+    "difficulty": "easy",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "8",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Difference Task #16",
+    "statement": "Given two integers a and b, output their difference a-b.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a-b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "-2",
+    "difficulty": "easy",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "-2",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Product Task #17",
+    "statement": "Given two integers a and b, output their product a*b.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a*b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "15",
+    "difficulty": "easy",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "15",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Maximum Task #18",
+    "statement": "Given two integers a and b, output the larger of the two.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: max(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "5",
+    "difficulty": "easy",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "5",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Minimum Task #19",
+    "statement": "Given two integers a and b, output the smaller of the two.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: min(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "3",
+    "difficulty": "easy",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "3",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Absolute Difference Task #20",
+    "statement": "Given two integers a and b, output |a-b|.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: abs(a-b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "2",
+    "difficulty": "easy",
+    "tags": "math, absolute",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "2",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "GCD Task #21",
+    "statement": "Given two integers a and b, output their greatest common divisor.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: gcd(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "1",
+    "difficulty": "easy",
+    "tags": "math, number theory",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "1",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "LCM Task #22",
+    "statement": "Given two integers a and b, output their least common multiple.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: lcm(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "15",
+    "difficulty": "easy",
+    "tags": "math, number theory",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "15",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Square Sum Task #23",
+    "statement": "Given two integers a and b, output a^2 + b^2.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a*a + b*b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "34",
+    "difficulty": "easy",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "34",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Comparison Task #24",
+    "statement": "Given two integers a and b, output 'Greater' if a>b, 'Less' if a<b, and 'Equal' otherwise.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Greater, Less, or Equal.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Less",
+    "difficulty": "easy",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Less",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Less",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Equal",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Parity of Sum Task #25",
+    "statement": "Given two integers a and b, output 'Even' if a+b is even, otherwise output 'Odd'.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Even or Odd.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Even",
+    "difficulty": "easy",
+    "tags": "math, parity",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Even",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Odd",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Even",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Sign of Sum Task #26",
+    "statement": "Given two integers a and b, output 'Positive' if a+b>0, 'Zero' if a+b==0, and 'Negative' otherwise.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Positive, Zero, or Negative.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Positive",
+    "difficulty": "medium",
+    "tags": "math, signs",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Positive",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Negative",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Positive",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Sum Task #27",
+    "statement": "Given two integers a and b, output their sum.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a+b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "8",
+    "difficulty": "medium",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "8",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Difference Task #28",
+    "statement": "Given two integers a and b, output their difference a-b.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a-b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "-2",
+    "difficulty": "medium",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "-2",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Product Task #29",
+    "statement": "Given two integers a and b, output their product a*b.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a*b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "15",
+    "difficulty": "medium",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "15",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Maximum Task #30",
+    "statement": "Given two integers a and b, output the larger of the two.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: max(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "5",
+    "difficulty": "medium",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "5",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Minimum Task #31",
+    "statement": "Given two integers a and b, output the smaller of the two.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: min(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "3",
+    "difficulty": "medium",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "3",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Absolute Difference Task #32",
+    "statement": "Given two integers a and b, output |a-b|.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: abs(a-b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "2",
+    "difficulty": "medium",
+    "tags": "math, absolute",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "2",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "GCD Task #33",
+    "statement": "Given two integers a and b, output their greatest common divisor.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: gcd(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "1",
+    "difficulty": "medium",
+    "tags": "math, number theory",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "1",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "LCM Task #34",
+    "statement": "Given two integers a and b, output their least common multiple.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: lcm(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "15",
+    "difficulty": "medium",
+    "tags": "math, number theory",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "15",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Square Sum Task #35",
+    "statement": "Given two integers a and b, output a^2 + b^2.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a*a + b*b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "34",
+    "difficulty": "medium",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "34",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Comparison Task #36",
+    "statement": "Given two integers a and b, output 'Greater' if a>b, 'Less' if a<b, and 'Equal' otherwise.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Greater, Less, or Equal.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Less",
+    "difficulty": "medium",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Less",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Less",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Equal",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Parity of Sum Task #37",
+    "statement": "Given two integers a and b, output 'Even' if a+b is even, otherwise output 'Odd'.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Even or Odd.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Even",
+    "difficulty": "medium",
+    "tags": "math, parity",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Even",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Odd",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Even",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Sign of Sum Task #38",
+    "statement": "Given two integers a and b, output 'Positive' if a+b>0, 'Zero' if a+b==0, and 'Negative' otherwise.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Positive, Zero, or Negative.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Positive",
+    "difficulty": "medium",
+    "tags": "math, signs",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Positive",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Negative",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Positive",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Sum Task #39",
+    "statement": "Given two integers a and b, output their sum.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a+b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "8",
+    "difficulty": "medium",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "8",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Difference Task #40",
+    "statement": "Given two integers a and b, output their difference a-b.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a-b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "-2",
+    "difficulty": "medium",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "-2",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Product Task #41",
+    "statement": "Given two integers a and b, output their product a*b.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a*b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "15",
+    "difficulty": "medium",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "15",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Maximum Task #42",
+    "statement": "Given two integers a and b, output the larger of the two.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: max(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "5",
+    "difficulty": "medium",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "5",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Minimum Task #43",
+    "statement": "Given two integers a and b, output the smaller of the two.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: min(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "3",
+    "difficulty": "medium",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "3",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Absolute Difference Task #44",
+    "statement": "Given two integers a and b, output |a-b|.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: abs(a-b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "2",
+    "difficulty": "medium",
+    "tags": "math, absolute",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "2",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "GCD Task #45",
+    "statement": "Given two integers a and b, output their greatest common divisor.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: gcd(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "1",
+    "difficulty": "medium",
+    "tags": "math, number theory",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "1",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "LCM Task #46",
+    "statement": "Given two integers a and b, output their least common multiple.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: lcm(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "15",
+    "difficulty": "medium",
+    "tags": "math, number theory",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "15",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Square Sum Task #47",
+    "statement": "Given two integers a and b, output a^2 + b^2.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a*a + b*b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "34",
+    "difficulty": "medium",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "34",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Comparison Task #48",
+    "statement": "Given two integers a and b, output 'Greater' if a>b, 'Less' if a<b, and 'Equal' otherwise.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Greater, Less, or Equal.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Less",
+    "difficulty": "medium",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Less",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Less",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Equal",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Parity of Sum Task #49",
+    "statement": "Given two integers a and b, output 'Even' if a+b is even, otherwise output 'Odd'.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Even or Odd.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Even",
+    "difficulty": "medium",
+    "tags": "math, parity",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Even",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Odd",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Even",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Sign of Sum Task #50",
+    "statement": "Given two integers a and b, output 'Positive' if a+b>0, 'Zero' if a+b==0, and 'Negative' otherwise.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Positive, Zero, or Negative.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Positive",
+    "difficulty": "medium",
+    "tags": "math, signs",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Positive",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Negative",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Positive",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Sum Task #51",
+    "statement": "Given two integers a and b, output their sum.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a+b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "8",
+    "difficulty": "hard",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "8",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Difference Task #52",
+    "statement": "Given two integers a and b, output their difference a-b.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a-b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "-2",
+    "difficulty": "hard",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "-2",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Product Task #53",
+    "statement": "Given two integers a and b, output their product a*b.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a*b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "15",
+    "difficulty": "hard",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "15",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Maximum Task #54",
+    "statement": "Given two integers a and b, output the larger of the two.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: max(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "5",
+    "difficulty": "hard",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "5",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Minimum Task #55",
+    "statement": "Given two integers a and b, output the smaller of the two.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: min(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "3",
+    "difficulty": "hard",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "3",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "-1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Absolute Difference Task #56",
+    "statement": "Given two integers a and b, output |a-b|.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: abs(a-b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "2",
+    "difficulty": "hard",
+    "tags": "math, absolute",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "2",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "GCD Task #57",
+    "statement": "Given two integers a and b, output their greatest common divisor.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: gcd(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "1",
+    "difficulty": "hard",
+    "tags": "math, number theory",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "1",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "LCM Task #58",
+    "statement": "Given two integers a and b, output their least common multiple.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: lcm(a,b).",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "15",
+    "difficulty": "hard",
+    "tags": "math, number theory",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "15",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "0",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "1000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Square Sum Task #59",
+    "statement": "Given two integers a and b, output a^2 + b^2.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output a single integer: a*a + b*b.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "34",
+    "difficulty": "hard",
+    "tags": "math, arithmetic",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "34",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "1",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "2000000000000000000",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  },
+  {
+    "title": "Comparison Task #60",
+    "statement": "Given two integers a and b, output 'Greater' if a>b, 'Less' if a<b, and 'Equal' otherwise.",
+    "input_format": "Two integers a and b separated by space.",
+    "output_format": "Output one word: Greater, Less, or Equal.",
+    "constraints": "-1000000000 <= a,b <= 1000000000",
+    "sample_input": "3 5",
+    "sample_output": "Less",
+    "difficulty": "hard",
+    "tags": "math, comparisons",
+    "discussion_count": 0,
+    "testcases": [
+      {
+        "input": "3 5",
+        "expected_output": "Less",
+        "is_sample": true,
+        "is_hidden": false,
+        "order": 1
+      },
+      {
+        "input": "-1 0",
+        "expected_output": "Less",
+        "is_sample": false,
+        "is_hidden": false,
+        "order": 2
+      },
+      {
+        "input": "1000000000 1000000000",
+        "expected_output": "Equal",
+        "is_sample": false,
+        "is_hidden": true,
+        "order": 3
+      }
+    ]
+  }
+]

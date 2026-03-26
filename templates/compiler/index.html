@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Compiler</title>
+</head>
+<body>
+  <h1>Online Judge - Code Submission</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label>Choose Language:</label><br>
+    {{ form.language }}<br><br>
+
+    <label>Code:</label><br>
+    {{ form.code }}<br><br>
+
+    <label>Custom Input (optional):</label><br>
+    {{ form.input_data }}<br><br>
+
+    <button type="submit">Run Code</button>
+  </form>
+</body>
+</html>

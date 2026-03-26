@@ -1,0 +1,53 @@
+/* Contest-specific */
+.contest-hero {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.12));
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 10px);
+  padding: 1.5rem;
+}
+
+.contest-timer {
+  font-variant-numeric: tabular-nums;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.contest-timer.warn {
+  color: var(--warning, #eab308);
+}
+
+.contest-timer.critical {
+  color: var(--danger, #ef4444);
+  animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.75;
+  }
+}
+
+.contest-prob-sidebar .list-group-item {
+  cursor: pointer;
+  border-color: var(--border);
+  background: var(--bg-surface);
+  color: var(--text);
+  transition: background 0.15s ease;
+}
+
+.contest-prob-sidebar .list-group-item:hover {
+  background: var(--bg-hover);
+}
+
+.contest-prob-sidebar .list-group-item.active {
+  border-left: 3px solid var(--accent, #3b82f6);
+  background: var(--bg-elevated);
+}
+
+.standings-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--bg-elevated);
+}

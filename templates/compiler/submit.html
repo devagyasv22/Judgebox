@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Playground — JudgeBox{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/one-dark.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldgutter.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="row g-3">
+  <div class="col-lg-8">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h1 class="h4 mb-0">Code playground</h1>
+      <div class="d-flex gap-2 align-items-center">
+        <select class="form-select form-select-sm" id="cm-theme-pg" style="max-width:130px;" aria-label="Theme">
+          <option value="dracula">Dracula</option>
+          <option value="one-dark">One Dark</option>
+          <option value="default">Default</option>
+        </select>
+        <input type="range" id="cm-font-pg" min="12" max="22" value="14" aria-label="Font size">
+      </div>
+    </div>
+    <div class="cm-shell rounded border border-secondary overflow-hidden" style="min-height:420px;">
+      <textarea id="code-pg" name="code" form="pg-form">{{ form.code.value|default:"" }}</textarea>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="oj-card p-3 h-100 d-flex flex-column">
+      <h2 class="h6 oj-card-header border-0 px-0 pt-0">Run</h2>
+      <form method="post" id="pg-form" class="flex-grow-1 d-flex flex-column">
+        {% csrf_token %}
+        <label class="form-label small" for="id_language">Language</label>
+        {{ form.language|add_class:"form-select form-select-sm mb-2" }}
+        <label class="form-label small" for="id_input_data">Input</label>
+        {{ form.input_data|add_class:"form-control form-control-sm mb-2" }}
+        <button type="submit" class="btn btn-oj-primary mt-auto" data-submit-code>Run</button>
+      </form>
+      <p class="small text-muted mt-3 mb-0">This playground runs your code locally with the configured toolchain (Python / g++ / javac).</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldgutter.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/brace-fold.min.js"></script>
+<script>
+(function(){
+  const ta = document.getElementById("code-pg");
+  const form = document.getElementById("pg-form");
+  const editor = CodeMirror.fromTextArea(ta, {
+    lineNumbers: true,
+    mode: "python",
+    theme: "dracula",
+    matchBrackets: true,
+    autoCloseBrackets: true,
+    foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+  });
+  const lang = document.getElementById("id_language");
+  function syncMode() {
+    const v = lang.value;
+    if (v === "cpp") editor.setOption("mode", "text/x-c++src");
+    else if (v === "java") editor.setOption("mode", "text/x-java");
+    else editor.setOption("mode", "python");
+  }
+  lang.addEventListener("change", syncMode);
+  syncMode();
+  document.getElementById("cm-theme-pg").addEventListener("change", function() {
+    editor.setOption("theme", this.value === "default" ? "default" : this.value);
+  });
+  document.getElementById("cm-font-pg").addEventListener("input", function() {
+    editor.getWrapperElement().style.fontSize = this.value + "px";
+  });
+  form.addEventListener("submit", function(e) {
+    editor.save();
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard — JudgeBox{% endblock %}
+
+{% block content %}
+<h1 class="h3 mb-4">Dashboard</h1>
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-md-3">
+    <div class="oj-card p-3 text-center h-100">
+      <div class="small text-muted">Solved today</div>
+      <div class="fs-2 fw-bold">{{ solved_today }}</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="oj-card p-3 text-center h-100">
+      <div class="small text-muted">Contests (7d)</div>
+      <div class="fs-2 fw-bold">{{ contests_week }}</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="oj-card p-3 text-center h-100">
+      <div class="small text-muted">Streak</div>
+      <div class="fs-2 fw-bold">{{ streak }}</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="oj-card p-3 text-center h-100">
+      <div class="small text-muted">Best rank</div>
+      <div class="fs-2 fw-bold">{{ best_rank }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="oj-card mb-4">
+      <div class="oj-card-header">Recent activity</div>
+      <ul class="list-group list-group-flush">
+        {% for s in recent_submissions %}
+        <li class="list-group-item bg-transparent border-secondary small d-flex justify-content-between">
+          <span>
+            {% if s.problem %}<a href="{% url 'problem_detail' s.problem_id %}">{{ s.problem.title }}</a>{% else %}Playground{% endif %}
+            · <span class="badge verdict-{% if s.verdict == 'AC' %}ac{% else %}wa{% endif %}">{{ s.verdict|default:"—" }}</span>
+          </span>
+          <span class="text-muted">{{ s.submitted_at|timesince }} ago</span>
+        </li>
+        {% empty %}
+        <li class="list-group-item bg-transparent text-muted">No submissions yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="oj-card mb-4">
+      <div class="oj-card-header">Activity (last year)</div>
+      <div class="p-3">
+        <div class="heatmap-grid" style="max-width:420px;">
+          {% for c in heatmap_cells %}
+          <div class="heatmap-cell {% if c > 3 %}l4{% elif c > 2 %}l3{% elif c > 1 %}l2{% elif c > 0 %}l1{% else %}{% endif %}" title="{{ c }} submissions"></div>
+          {% endfor %}
+        </div>
+        <p class="small text-muted mb-0 mt-2">Daily submission counts when available.</p>
+      </div>
+    </div>
+
+    <div class="oj-card">
+      <div class="oj-card-header">Recommended</div>
+      <div class="p-3">
+        <div class="problem-grid">
+          {% for p in recommended %}
+          <article class="oj-card p-3">
+            <a class="fw-semibold" href="{% url 'problem_detail' p.id %}">{{ p.title }}</a>
+            <div class="mt-1"><span class="badge {% if p.difficulty == 'easy' %}badge-diff-easy{% elif p.difficulty == 'hard' %}badge-diff-hard{% else %}badge-diff-medium{% endif %}">{{ p.get_difficulty_display }}</span></div>
+          </article>
+          {% empty %}
+          <p class="text-muted small mb-0">Solve more problems to unlock recommendations.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="oj-card mb-3">
+      <div class="oj-card-header">Upcoming contests</div>
+      <ul class="list-group list-group-flush">
+        {% for c in upcoming_contests %}
+        <li class="list-group-item bg-transparent border-secondary">
+          <a href="{% url 'contest_detail' c.id %}">{{ c.title }}</a>
+          <div class="small text-muted">{{ c.start_time }}</div>
+        </li>
+        {% empty %}
+        <li class="list-group-item bg-transparent text-muted">None scheduled.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="oj-card">
+      <div class="oj-card-header">Quick links</div>
+      <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action bg-transparent text-light" href="{% url 'problem_list' %}">Problems</a>
+        <a class="list-group-item list-group-item-action bg-transparent text-light" href="{% url 'contest_list' %}">Contests</a>
+        <a class="list-group-item list-group-item-action bg-transparent text-light" href="{% url 'community' %}">Discuss</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

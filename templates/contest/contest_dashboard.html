@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contest — {{ contest.title }}{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/contest.css' %}">{% endblock %}
+
+{% block content %}
+<div class="alert alert-warning small d-flex align-items-center gap-2 mb-3" role="alert">
+  <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+  <span>Contest mode: do not use external resources or communicate about problems until the round ends.</span>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-3">
+    <div class="oj-card p-3 mb-3">
+      <div class="small text-muted">Time left</div>
+      <div class="contest-timer" id="contest-countdown" data-end="{{ contest.end_time.isoformat }}">--:--:--</div>
+      <a class="btn btn-outline-light btn-sm w-100 mt-2" href="{% url 'contest_leaderboard' contest.id %}">Standings</a>
+    </div>
+    <div class="list-group contest-prob-sidebar oj-card overflow-hidden">
+      {% for p in problems %}
+      <a class="list-group-item list-group-item-action" href="{% url 'contest_problem' contest.id p.id %}">
+        <span class="badge bg-secondary me-1">{{ p._letter }}</span> {{ p.title }}
+        <span class="float-end badge {% if p.difficulty == 'easy' %}badge-diff-easy{% elif p.difficulty == 'hard' %}badge-diff-hard{% else %}badge-diff-medium{% endif %}">{{ p.get_difficulty_display }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-lg-9">
+    <div class="oj-card p-4 text-center text-muted">
+      <p class="mb-2">Select a problem from the sidebar to begin.</p>
+      {% if problems %}
+      <a class="btn btn-oj-primary" href="{% url 'contest_problem' contest.id problems.0.id %}">Open first problem</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/contest.js' %}"></script>{% endblock %}

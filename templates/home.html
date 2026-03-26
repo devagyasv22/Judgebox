@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home — JudgeBox{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contest.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="py-4">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-7">
+      <h1 class="display-5 fw-bold mb-3">Code. Compete. Improve.</h1>
+      <p class="lead text-muted mb-4">A focused online judge with contests, a rich problem set, and a fast submission flow inspired by LeetCode and Codeforces.</p>
+      <div class="d-flex flex-wrap gap-2">
+        <a href="{% url 'problem_list' %}" class="btn btn-oj-primary btn-lg"><i class="fa-solid fa-code me-2" aria-hidden="true"></i>Browse problems</a>
+        <a href="{% url 'contest_list' %}" class="btn btn-outline-light btn-lg"><i class="fa-solid fa-stopwatch me-2" aria-hidden="true"></i>View contests</a>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'signup' %}" class="btn btn-outline-secondary btn-lg">Create account</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="oj-card p-4 contest-hero">
+        <h2 class="h5 mb-3">Your snapshot</h2>
+        <div class="row g-2 text-center">
+          <div class="col-6">
+            <div class="fs-3 fw-bold">{{ total_problems }}</div>
+            <div class="small text-muted">Problems</div>
+          </div>
+          <div class="col-6">
+            <div class="fs-3 fw-bold">{% if user.is_authenticated %}{{ solved_count }}{% else %}—{% endif %}</div>
+            <div class="small text-muted">Solved</div>
+          </div>
+          <div class="col-6">
+            <div class="fs-3 fw-bold">{% if accuracy is not None %}{{ accuracy }}%{% else %}—{% endif %}</div>
+            <div class="small text-muted">Accuracy</div>
+          </div>
+          <div class="col-6">
+            <div class="fs-3 fw-bold">{{ rank_display }}</div>
+            <div class="small text-muted">Rank</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="h4 mb-0">Featured problems</h2>
+    <a href="{% url 'problem_list' %}" class="small">View all</a>
+  </div>
+  <div id="featured-carousel" class="carousel slide oj-card" data-bs-ride="carousel" aria-label="Featured problems">
+    <div class="carousel-inner">
+      {% for p in featured_problems %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <div class="p-4">
+          <div class="d-flex justify-content-between align-items-start gap-2">
+            <div>
+              <span class="badge rounded-pill {% if p.difficulty == 'easy' %}badge-diff-easy{% elif p.difficulty == 'hard' %}badge-diff-hard{% else %}badge-diff-medium{% endif %}">{{ p.get_difficulty_display }}</span>
+              <h3 class="h5 mt-2 mb-1"><a href="{% url 'problem_detail' p.id %}">{{ p.title }}</a></h3>
+              <p class="text-muted small mb-0 text-truncate-3">{{ p.statement|truncatewords:28 }}</p>
+            </div>
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'problem_detail' p.id %}">Open</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="carousel-item active">
+        <div class="p-5 text-center text-muted">No problems yet — add some in the admin.</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% if featured_problems|length > 1 %}
+    <button class="carousel-control-prev" type="button" data-bs-target="#featured-carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#featured-carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    {% endif %}
+  </div>
+</section>
+
+<div class="row g-4 py-4">
+  <div class="col-lg-6">
+    <div class="oj-card h-100">
+      <div class="oj-card-header">Quick contest</div>
+      <div class="p-3">
+        {% if upcoming_contests %}
+        {% with c=upcoming_contests.0 %}
+        <h3 class="h5">{{ c.title }}</h3>
+        <p class="text-muted small mb-2">{{ c.contest_type }} · {{ c.duration_minutes }} min · {{ c.problems.count }} problems</p>
+        <p class="small mb-3">Starts {{ c.start_time }}</p>
+        <a href="{% url 'contest_detail' c.id %}" class="btn btn-oj-primary btn-sm">View contest</a>
+        {% endwith %}
+        {% else %}
+        <p class="text-muted mb-0">No upcoming contests scheduled.</p>
+        <a href="{% url 'contest_list' %}" class="btn btn-outline-light btn-sm mt-2">Browse past contests</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="oj-card h-100">
+      <div class="oj-card-header">Announcements</div>
+      <ul class="list-group list-group-flush">
+        {% for a in announcements %}
+        <li class="list-group-item bg-transparent text-body border-secondary">
+          <div class="fw-semibold">{{ a.title }}</div>
+          <div class="small text-muted">{{ a.date }} — {{ a.body }}</div>
+        </li>
+        {% empty %}
+        <li class="list-group-item bg-transparent text-muted">No announcements.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

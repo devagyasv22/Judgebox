@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Problem set — JudgeBox{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+  <aside class="col-lg-3">
+    <div class="oj-card p-3 sticky-top" style="top:88px;">
+      <h2 class="h6 oj-card-header border-0 px-0 pt-0">Filters</h2>
+      <div class="mb-3">
+        <label class="form-label small" for="filter-q">Search</label>
+        <input type="search" class="form-control form-control-sm" id="filter-q" placeholder="Title…" autocomplete="off" aria-label="Search problems">
+      </div>
+      <div class="mb-3">
+        <label class="form-label small" for="filter-difficulty">Difficulty</label>
+        <select class="form-select form-select-sm" id="filter-difficulty" aria-label="Difficulty">
+          <option value="">All</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label small" for="filter-tag">Tag</label>
+        <input type="text" class="form-control form-control-sm" id="filter-tag" placeholder="e.g. dp, graphs" aria-label="Tag filter">
+      </div>
+      <div class="mb-3">
+        <label class="form-label small" for="filter-status">Status</label>
+        <select class="form-select form-select-sm" id="filter-status" aria-label="Status">
+          <option value="">All</option>
+          <option value="solved">Solved</option>
+          <option value="attempted">Attempted</option>
+          <option value="unsolved">Unsolved</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label small" for="filter-sort">Sort</label>
+        <select class="form-select form-select-sm" id="filter-sort" aria-label="Sort">
+          <option value="id">Default</option>
+          <option value="difficulty">Difficulty</option>
+          <option value="acceptance">Acceptance</option>
+          <option value="recent">Most recent</option>
+          <option value="popular">Most popular</option>
+        </select>
+      </div>
+      <div class="d-grid gap-2">
+        <button type="button" class="btn btn-sm btn-oj-primary" id="apply-filters">Apply</button>
+        <div class="btn-group btn-group-sm" role="group" aria-label="View mode">
+          <button type="button" class="btn btn-outline-secondary active" id="view-grid" aria-pressed="true"><i class="fa-solid fa-table-cells" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-outline-secondary" id="view-list" aria-pressed="false"><i class="fa-solid fa-list"></i></button>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="col-lg-9">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1 class="h3 mb-0">Problems</h1>
+      <span class="small text-muted" id="problem-count"></span>
+    </div>
+    <div id="problems-grid" class="problem-grid"></div>
+    <div class="d-none">
+      <table class="table table-dark table-hover" id="problem-table">
+        <thead><tr><th>Title</th><th>Difficulty</th><th>Acceptance</th><th>Status</th></tr></thead>
+        <tbody id="problem-table-body"></tbody>
+      </table>
+    </div>
+    <p class="text-muted small mt-3" id="problem-empty" style="display:none;">No problems match your filters.</p>
+  </div>
+</div>
+
+{{ problems_payload|json_script:"initial-problems" }}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+  const apiUrl = "{% url 'problem_list_api' %}";
+  let gridMode = true;
+  const container = document.getElementById("problems-grid");
+  if (!container) {
+    const mainEl = document.querySelector(".oj-main") || document.body;
+    mainEl.insertAdjacentHTML("afterbegin", "<div class='alert alert-danger m-3'>Critical Error: Grid container #problems-grid not found in DOM!</div>");
+    return;
+  }
+  const tableBody = document.getElementById("problem-table-body");
+  const tableWrap = document.getElementById("problem-table").parentElement;
+  const emptyEl = document.getElementById("problem-empty");
+  const countEl = document.getElementById("problem-count");
+
+  function esc(s) {
+    const d = document.createElement("div");
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function badgeClass(d) {
+    if (d === "easy") return "badge-diff-easy";
+    if (d === "hard") return "badge-diff-hard";
+    return "badge-diff-medium";
+  }
+
+  function statusIcon(st) {
+    if (st === "solved") return '<i class="fa-solid fa-check text-success" title="Solved" aria-label="Solved"></i>';
+    if (st === "attempted") return '<i class="fa-solid fa-clock-rotate-left text-warning" title="Attempted" aria-label="Attempted"></i>';
+    return '<i class="fa-regular fa-circle text-muted" title="Not started" aria-label="Not started"></i>';
+  }
+
+  function renderCard(p) {
+    const acc = p.acceptance_rate != null ? p.acceptance_rate + "%" : "—";
+
+    // Sanity check: ensure we have a stable link target.
+    if (!p || !p.id) {
+      console.error("Problem card missing `id`:", p);
+      return (
+        '<article class="oj-card p-3 h-100 d-flex flex-column" aria-label="Missing id problem card">' +
+          '<div class="d-flex justify-content-between gap-2 mb-2">' +
+            '<div class="fw-semibold">Missing id</div>' +
+            '<span class="badge bg-danger">missing id</span>' +
+          "</div>" +
+          '<div class="small text-muted mb-2">Cannot open details.</div>' +
+          '<div class="mt-auto small text-muted">—</div>' +
+        "</article>"
+      );
+    }
+
+    // Whole-card anchor: no nested anchors, keyboard accessible.
+    // `display:block` and `height:100%` are handled by CSS.
+    const href = esc(p.url || ("/problems/" + p.id + "/"));
+    return (
+      '<a class="oj-card oj-card-link p-3 h-100 d-flex flex-column" href="' + href + '" aria-label="Open problem: ' + esc(p.title || '') + '">' +
+        '<div class="d-flex justify-content-between gap-2 mb-2">' +
+          '<div class="fw-semibold">' + esc(p.title || "Untitled") + "</div>" +
+          '<span class="badge ' + badgeClass(p.difficulty_key) + '">' + esc(p.difficulty) + "</span>" +
+        "</div>" +
+        '<div class="small text-muted mb-2">' + (p.tags && p.tags.length ? esc(p.tags.join(", ")) : "—") + "</div>" +
+        '<div class="mt-auto d-flex justify-content-between small">' +
+          '<span>Acceptance: ' + esc(String(acc)) + "</span>" +
+          '<span>Subs: ' + p.submission_count + "</span>" +
+          "<span>" + statusIcon(p.user_status) + "</span>" +
+        "</div>" +
+      "</a>"
+    );
+  }
+
+  function renderRow(p) {
+    const acc = p.acceptance_rate != null ? p.acceptance_rate + "%" : "—";
+
+    if (!p || !p.id) {
+      console.error("Problem row missing `id`:", p);
+      return (
+        "<tr>" +
+        "<td><span class=\"fw-semibold\">Missing id</span> <span class=\"badge bg-danger\">missing id</span></td>" +
+        "<td>" + "<span class=\"badge bg-secondary\">—</span>" + "</td>" +
+        "<td>—</td>" +
+        "<td>—</td>" +
+        "</tr>"
+      );
+    }
+
+    const href = esc(p.url || ("/problems/" + p.id + "/"));
+    const titleCell =
+      "<a class=\"oj-row-link\" href=\"" + href + "\">" + esc(p.title) + "</a>";
+    const diffCell =
+      "<a class=\"oj-row-link\" href=\"" + href + "\"><span class=\"badge " + badgeClass(p.difficulty_key) + "\">" + esc(p.difficulty) + "</span></a>";
+    const accCell =
+      "<a class=\"oj-row-link\" href=\"" + href + "\">" + esc(String(acc)) + "</a>";
+    const statusCell =
+      "<a class=\"oj-row-link\" href=\"" + href + "\">" + statusIcon(p.user_status) + "</a>";
+
+    return (
+      "<tr>" +
+      "<td>" + titleCell + "</td>" +
+      "<td>" + diffCell + "</td>" +
+      "<td>" + accCell + "</td>" +
+      "<td>" + statusCell + "</td>" +
+      "</tr>"
+    );
+  }
+
+  function renderList(results) {
+    container.innerHTML = "";
+    tableBody.innerHTML = "";
+    countEl.textContent = results.length + " problems";
+    if (!results.length) {
+      emptyEl.style.display = "block";
+      return;
+    }
+    emptyEl.style.display = "none";
+    if (gridMode) {
+      container.className = "problem-grid";
+      results.forEach(function (p) {
+        container.insertAdjacentHTML("beforeend", renderCard(p));
+      });
+
+      tableWrap.classList.add("d-none");
+      container.classList.remove("d-none");
+    } else {
+      container.classList.add("d-none");
+      tableWrap.classList.remove("d-none");
+      results.forEach(function (p) {
+        tableBody.insertAdjacentHTML("beforeend", renderRow(p));
+      });
+    }
+  }
+
+  async function fetchProblems() {
+    const params = new URLSearchParams();
+    const q = document.getElementById("filter-q").value.trim();
+    const difficulty = document.getElementById("filter-difficulty").value;
+    const tag = document.getElementById("filter-tag").value.trim();
+    const status = document.getElementById("filter-status").value;
+    const sort = document.getElementById("filter-sort").value;
+    if (q) params.set("q", q);
+    if (difficulty) params.set("difficulty", difficulty);
+    if (tag) params.set("tag", tag);
+    if (status) params.set("status", status);
+    if (sort) params.set("sort", sort);
+    const res = await fetch(apiUrl + "?" + params.toString(), {
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+    });
+    const data = await res.json();
+    renderList(data.results || []);
+  }
+
+  const debounced = (window.OJ && OJ.debounce) ? OJ.debounce(fetchProblems, 280) : fetchProblems;
+
+  document.getElementById("apply-filters").addEventListener("click", fetchProblems);
+  document.getElementById("filter-q").addEventListener("input", debounced);
+  document.getElementById("view-grid").addEventListener("click", function () {
+    gridMode = true;
+    document.getElementById("view-grid").classList.add("active");
+    document.getElementById("view-list").classList.remove("active");
+    fetchProblems();
+  });
+  document.getElementById("view-list").addEventListener("click", function () {
+    gridMode = false;
+    document.getElementById("view-list").classList.add("active");
+    document.getElementById("view-grid").classList.remove("active");
+    fetchProblems();
+  });
+
+  try {
+    const initial = JSON.parse(document.getElementById("initial-problems").textContent);
+    console.assert(Array.isArray(initial), "Parsed data is not an array!");
+    console.log("Parsed data length:", initial.length);
+    renderList(initial);
+  } catch (e) {
+    console.error("Crash during initial load:", e);
+    fetchProblems();
+  }
+})();
+</script>
+{% endblock %}

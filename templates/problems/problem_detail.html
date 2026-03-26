@@ -1,0 +1,284 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% url 'login' as login_url %}
+
+{% block title %}{{ problem.title }} — JudgeBox{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/one-dark.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldgutter.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="row g-3 flex-column-reverse flex-xl-row">
+  <div class="col-xl-8">
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+      <h1 class="h3 mb-0">{{ problem.title }}</h1>
+      <span class="badge {% if problem.difficulty == 'easy' %}badge-diff-easy{% elif problem.difficulty == 'hard' %}badge-diff-hard{% else %}badge-diff-medium{% endif %}">{{ problem.get_difficulty_display }}</span>
+      {% for t in problem.tag_list %}
+      <span class="badge bg-dark border border-secondary">{{ t }}</span>
+      {% endfor %}
+    </div>
+
+    <ul class="nav nav-tabs mb-2" role="tablist">
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pd-desc" type="button">Description</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pd-discuss" type="button">Discussion</button></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane fade show active oj-card p-3" id="pd-desc" role="tabpanel">
+        <p>{{ problem.statement|linebreaksbr }}</p>
+        <h2 class="h6 mt-3">Input</h2>
+        <p class="small">{{ problem.input_format|linebreaksbr }}</p>
+        <h2 class="h6">Output</h2>
+        <p class="small">{{ problem.output_format|linebreaksbr }}</p>
+        <h2 class="h6">Constraints</h2>
+        <p class="small">{{ problem.constraints|linebreaksbr }}</p>
+        <button class="btn btn-sm btn-outline-secondary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#pd-sample">Sample I/O</button>
+        <div class="collapse mt-2" id="pd-sample">
+          <pre class="bg-black bg-opacity-50 p-3 rounded small">{{ problem.sample_input }}</pre>
+          <pre class="bg-black bg-opacity-50 p-3 rounded small">{{ problem.sample_output }}</pre>
+        </div>
+        {% if testcases %}
+        <h2 class="h6 mt-3">Additional samples</h2>
+        <ul class="list-unstyled small">
+          {% for tc in testcases %}
+          <li class="mb-2 border-bottom border-secondary pb-2">
+            <div><strong>In</strong></div><pre class="mb-1">{{ tc.input_data }}</pre>
+            <div><strong>Out</strong></div><pre class="mb-0">{{ tc.expected_output }}</pre>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <div class="tab-pane fade oj-card p-3" id="pd-discuss" role="tabpanel">
+        <p class="text-muted small mb-0">Discussion count: {{ problem.discussion_count }}. Threading can be added later.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-4">
+    <div class="oj-card p-3 sticky-top" style="top:88px;">
+      <div id="auth-banner" class="alert alert-warning small d-none mb-2" role="alert">
+        <div class="fw-semibold mb-1">Please log in to submit solutions.</div>
+        <a id="auth-banner-link" class="alert-link" href="#" rel="noopener">Log in</a>
+      </div>
+
+      {% if user.is_authenticated %}
+        <form method="post" action="{% url 'submit_code' problem.id %}" id="submit-form">
+          {% csrf_token %}
+          <div class="d-flex flex-wrap gap-2 mb-2 align-items-center">
+            <label class="small text-muted mb-0" for="id_language">Language</label>
+            {{ form.language|add_class:"form-select form-select-sm" }}
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-2">
+            <select class="form-select form-select-sm" id="cm-theme" style="max-width:140px;" aria-label="Editor theme">
+              <option value="dracula">Dracula</option>
+              <option value="one-dark">One Dark</option>
+              <option value="default">Default</option>
+            </select>
+            <label class="small d-flex align-items-center gap-1 mb-0">
+              <span>Font</span>
+              <input type="range" id="cm-font" min="12" max="22" value="14" aria-label="Font size">
+            </label>
+          </div>
+          <div class="cm-shell mb-2 rounded border border-secondary overflow-hidden" style="min-height:280px;">
+            <textarea id="code" name="code">{{ form.code.value|default:"" }}</textarea>
+          </div>
+          <div class="mb-2">
+            <label class="form-label small" for="input_data">Custom input</label>
+            {{ form.input_data|add_class:"form-control form-control-sm" }}
+          </div>
+          <div id="ai-review-container" class="mt-2" style="display:none;">
+            <div class="alert alert-secondary small mb-2" id="ai-review-output" style="white-space:pre-wrap;"></div>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <button type="submit" name="action" value="custom" class="btn btn-sm btn-oj-outline">Run custom</button>
+            <button type="submit" name="action" value="run_all" class="btn btn-sm btn-oj-primary" data-submit-code>Run tests</button>
+            <button type="button" id="ai-review-btn" class="btn btn-sm btn-outline-primary">AI review</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="share-code">Copy code</button>
+          </div>
+        </form>
+      {% else %}
+        <div class="small text-muted mb-2">Sign in to run custom tests, run all tests, and submit solutions.</div>
+
+        <div class="d-flex flex-wrap gap-2 mb-2 align-items-center">
+          <label class="small text-muted mb-0" for="id_language">Language</label>
+          {{ form.language|add_class:"form-select form-select-sm"|attr:"disabled" }}
+        </div>
+        <div class="d-flex flex-wrap gap-2 mb-2">
+          <select class="form-select form-select-sm" id="cm-theme" style="max-width:140px;" aria-label="Editor theme" disabled>
+            <option value="dracula">Dracula</option>
+            <option value="one-dark">One Dark</option>
+            <option value="default">Default</option>
+          </select>
+          <label class="small d-flex align-items-center gap-1 mb-0">
+            <span>Font</span>
+            <input type="range" id="cm-font" min="12" max="22" value="14" aria-label="Font size" disabled>
+          </label>
+        </div>
+
+        <div class="cm-shell mb-2 rounded border border-secondary overflow-hidden" style="min-height:280px;">
+          <textarea id="code" name="code" readonly>{{ form.code.value|default:"" }}</textarea>
+        </div>
+        <div class="mb-2">
+          <label class="form-label small" for="input_data">Custom input</label>
+          {{ form.input_data|add_class:"form-control form-control-sm"|attr:"disabled" }}
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-oj-primary w-100" href="{{ login_url }}?next={{ request.get_full_path|urlencode }}">Log in to run tests</a>
+          <button type="button" class="btn btn-sm btn-outline-secondary" id="share-code">Copy code</button>
+        </div>
+      {% endif %}
+
+      {% if recent_submissions %}
+      <div class="mt-3">
+        <div class="small text-muted mb-1">Recent submissions</div>
+        <ul class="list-unstyled small mb-0">
+          {% for s in recent_submissions|slice:":6" %}
+          <li class="d-flex justify-content-between py-1 border-bottom border-secondary">
+            <span class="badge verdict-{% if s.verdict == 'AC' %}ac{% elif s.verdict == 'CE' %}ce{% else %}wa{% endif %}">{{ s.verdict|default:"—" }}</span>
+            <span class="text-muted">{{ s.submitted_at|timesince }} ago</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% if custom_output is not None %}
+<div class="row mt-3"><div class="col-12">
+  <div class="oj-card p-3"><div class="small text-muted mb-1">Custom output</div><pre class="mb-0 small">{{ custom_output }}</pre></div>
+</div></div>
+{% endif %}
+
+{% if results %}
+<div class="row mt-3"><div class="col-12">
+  <div class="oj-card p-3">
+    <div class="oj-card-header border-0 px-0 pt-0">Test results</div>
+    <div class="table-responsive">
+      <table class="table table-dark table-sm mb-0">
+        <thead><tr><th>#</th><th>Expected</th><th>Actual</th><th></th></tr></thead>
+        <tbody>
+          {% for r in results %}
+          <tr>
+            <td>{{ r.testcase }}</td>
+            <td><pre class="small mb-0">{{ r.expected }}</pre></td>
+            <td><pre class="small mb-0">{{ r.actual }}</pre></td>
+            <td>{% if r.passed %}<span class="badge verdict-ac">OK</span>{% else %}<span class="badge verdict-wa">Fail</span>{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="small mt-2 mb-0">Verdict: <strong>{{ submission.verdict|default:"—" }}</strong></p>
+  </div>
+</div></div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/foldgutter.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/fold/brace-fold.min.js"></script>
+<script>
+(function(){
+  const langSelect = document.getElementById("id_language");
+  const editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "python",
+    theme: "dracula",
+    matchBrackets: true,
+    autoCloseBrackets: true,
+    foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+    indentUnit: 4,
+  });
+  function syncMode() {
+    const v = langSelect.value;
+    if (v === "cpp") editor.setOption("mode", "text/x-c++src");
+    else if (v === "java") editor.setOption("mode", "text/x-java");
+    else editor.setOption("mode", "python");
+  }
+  langSelect.addEventListener("change", syncMode);
+  syncMode();
+  document.getElementById("cm-theme").addEventListener("change", function() {
+    const t = this.value;
+    editor.setOption("theme", t === "default" ? "default" : t);
+  });
+  document.getElementById("cm-font").addEventListener("input", function() {
+    editor.getWrapperElement().style.fontSize = this.value + "px";
+  });
+  const submitForm = document.getElementById("submit-form");
+  if (submitForm) {
+    submitForm.addEventListener("submit", function() { editor.save(); });
+  }
+
+  const shareBtn = document.getElementById("share-code");
+  if (shareBtn) {
+    shareBtn.addEventListener("click", function() {
+      if (window.OJ && OJ.copyText) OJ.copyText(editor.getValue());
+      else navigator.clipboard.writeText(editor.getValue());
+    });
+  }
+
+  const aiBtn = document.getElementById("ai-review-btn");
+  if (aiBtn) {
+    aiBtn.addEventListener("click", function() {
+      const authBanner = document.getElementById("auth-banner");
+      const authBannerLink = document.getElementById("auth-banner-link");
+
+      const loginUrl = "{% url 'login' %}?next=" + encodeURIComponent(window.location.pathname + window.location.search);
+
+      const showAuth = function () {
+        if (authBanner) authBanner.classList.remove("d-none");
+        if (authBannerLink) authBannerLink.href = loginUrl;
+        if (window.OJ && window.OJ.toast) window.OJ.toast("Please log in to submit solutions", "warning");
+      };
+
+      const code = editor.getValue();
+      fetch("{% url 'ai_review_code' problem.id %}", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ code: code, result: "" })
+      }).then(async (r) => {
+        if (r.redirected || r.status === 403) {
+          showAuth();
+          return null;
+        }
+        const ct = r.headers.get("content-type") || "";
+        if (ct.includes("application/json")) {
+          return r.json();
+        }
+        // Non-json response (likely login page)
+        showAuth();
+        return null;
+      }).then((data) => {
+        if (!data) return;
+        const out = document.getElementById("ai-review-output");
+        const box = document.getElementById("ai-review-container");
+        if (!out || !box) return;
+        out.textContent = data.feedback || data.error || JSON.stringify(data);
+        box.style.display = "block";
+      }).catch((e) => {
+        const out = document.getElementById("ai-review-output");
+        const box = document.getElementById("ai-review-container");
+        if (out) out.textContent = "Request failed: " + e;
+        if (box) box.style.display = "block";
+      });
+    });
+  }
+})();
+</script>
+{% endblock %}

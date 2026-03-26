@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Run output — Playground{% endblock %}
+
+{% block content %}
+<h1 class="h4 mb-3">Output</h1>
+<div class="oj-card p-3 mb-3">
+  <div class="small text-muted mb-1">Language: {{ submission.get_language_display }}</div>
+  <pre class="mb-0 small bg-black bg-opacity-25 p-3 rounded">{{ submission.output_data }}</pre>
+</div>
+<a class="btn btn-outline-light" href="{% url 'compiler_playground' %}">Run again</a>
+{% endblock %}

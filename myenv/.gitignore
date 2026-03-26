@@ -1,0 +1,32 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+# Ignore virtual environments
+venv/
+env/
+ENV/
+.venv/
+.VENV/
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Ignore Django secret files
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+.DS_Store
+
+# Ignore OS and IDE junk
+.vscode/
+.idea/
+*.swp
+
+# Ignore static and media generated folders (optional)
+staticfiles/
+media/
+# gemini Api key
+GEMINI_API_KEY=AIzaSyDC5cf4YCC0-nST3vlNHiY0cU7Of73Yq50

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ contest.title }} — Contest{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/contest.css' %}">{% endblock %}
+
+{% block content %}
+<div class="contest-hero mb-4">
+  <div class="d-flex flex-column flex-lg-row justify-content-between gap-3">
+    <div>
+      <span class="badge bg-secondary">{{ contest.contest_type }}</span>
+      <h1 class="h2 mt-2 mb-2">{{ contest.title }}</h1>
+      <p class="text-muted mb-0">{{ contest.description|default:""|linebreaksbr }}</p>
+    </div>
+    <div class="text-lg-end">
+      <div class="mb-1"><strong>Start</strong> {{ contest.start_time }}</div>
+      <div class="mb-1"><strong>End</strong> {{ contest.end_time }}</div>
+      <div class="small text-muted">{{ contest.duration_minutes }} minutes · {{ problem_count }} problems · {{ participant_count }} participants</div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="oj-card mb-3">
+      <div class="oj-card-header">Timeline &amp; rules</div>
+      <div class="p-3 small">
+        <ul class="mb-0">
+          <li>Submissions are judged against hidden tests; sample I/O is illustrative only.</li>
+          <li>Penalty: +10 minutes per failed submission before your first accepted solution on each problem.</li>
+          <li>Standings refresh periodically during the round.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="oj-card">
+      <div class="oj-card-header">Problems</div>
+      <div class="p-0 table-responsive">
+        <table class="table table-dark table-hover mb-0">
+          <thead><tr><th>#</th><th>Title</th><th>Difficulty</th></tr></thead>
+          <tbody>
+            {% for p in contest.problems.all %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>
+                {% if status == "running" and user.is_authenticated %}
+                <a href="{% url 'contest_problem' contest.id p.id %}">{{ p.title }}</a>
+                {% else %}
+                {{ p.title }}
+                {% endif %}
+              </td>
+              <td><span class="badge {% if p.difficulty == 'easy' %}badge-diff-easy{% elif p.difficulty == 'hard' %}badge-diff-hard{% else %}badge-diff-medium{% endif %}">{{ p.get_difficulty_display }}</span></td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3" class="text-muted px-3 py-3">No problems linked yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="oj-card p-3 mb-3">
+      <div class="mb-2">Status:
+        {% if status == "upcoming" %}<span class="badge text-bg-info">Upcoming</span>{% endif %}
+        {% if status == "running" %}<span class="badge text-bg-success">Running</span>{% endif %}
+        {% if status == "ended" %}<span class="badge text-bg-secondary">Ended</span>{% endif %}
+      </div>
+      {% if status == "upcoming" %}
+      <p class="small text-muted mb-3" id="contest-countdown-label">Time until start</p>
+      <div class="contest-timer mb-3" id="contest-countdown" data-end="{{ contest.start_time.isoformat }}">--:--:--</div>
+      {% elif status == "running" %}
+      <p class="small text-muted mb-3">Time remaining</p>
+      <div class="contest-timer mb-3" id="contest-countdown" data-end="{{ contest.end_time.isoformat }}">--:--:--</div>
+      {% endif %}
+
+      {% if user.is_authenticated %}
+        {% if status == "ended" %}
+        <a class="btn btn-outline-light w-100 mb-2" href="{% url 'contest_leaderboard' contest.id %}">Final standings</a>
+        <a class="btn btn-outline-secondary w-100" href="{% url 'contest_submissions' contest.id %}">All submissions</a>
+        {% else %}
+          {% if not registered %}
+          <form method="post" action="{% url 'contest_register' contest.id %}">
+            {% csrf_token %}
+            <button class="btn btn-oj-primary w-100 mb-2" type="submit">Register</button>
+          </form>
+          {% else %}
+          <div class="alert alert-success py-2 small">You are registered.</div>
+          {% endif %}
+          {% if status == "running" and registered %}
+          <a class="btn btn-oj-primary w-100 mb-2" href="{% url 'contest_dashboard' contest.id %}">Enter contest</a>
+          {% endif %}
+          <a class="btn btn-outline-light w-100" href="{% url 'contest_leaderboard' contest.id %}">Standings</a>
+        {% endif %}
+      {% else %}
+        <a class="btn btn-oj-primary w-100" href="{% url 'login' %}?next={{ request.path }}">Log in to register</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/contest.js' %}"></script>{% endblock %}

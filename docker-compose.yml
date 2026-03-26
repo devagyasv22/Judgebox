@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: oj_database
+      POSTGRES_USER: oj_user
+      POSTGRES_PASSWORD: super_secret_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: sh -c "python manage.py migrate --noinput && gunicorn OJ.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - submissions_data:/data/submissions
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_DB=oj_database
+      - POSTGRES_USER=oj_user
+      - POSTGRES_PASSWORD=super_secret_password
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - SUBMISSION_WORKDIR=/data/submissions
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  submissions_data:
