@@ -3,23 +3,19 @@
 {% block title %}Sign Up — JudgeBox{% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center" style="padding-top: 60px; padding-bottom: 40px;">
-  <div class="card shadow-lg border-0" style="background-color: #1f1f1f; color: white; max-width: 400px; width: 100%;">
-    <div class="card-header bg-secondary text-white text-center">
-      <h5 class="mb-0">Sign Up</h5>
+<div class="auth-card-container">
+  <div class="oj-card shadow-lg border-0 auth-card">
+    <div class="oj-card-header text-center border-bottom-0 pb-0 pt-4">
+      <h4 class="mb-1 fw-bold">Sign Up</h4>
+      <small class="oj-text-muted">Create your account</small>
     </div>
-    <div class="card-body">
+    <div class="card-body p-4">
       <form method="post" novalidate>
         {% csrf_token %}
 
-        {% if form.errors %}
+        {% if form.non_field_errors %}
         <div class="alert alert-danger py-2">
           <ul class="mb-0">
-            {% for field in form %}
-              {% for error in field.errors %}
-                <li>{{ error }}</li>
-              {% endfor %}
-            {% endfor %}
             {% for error in form.non_field_errors %}
               <li>{{ error }}</li>
             {% endfor %}
@@ -30,17 +26,26 @@
         {% for field in form %}
         <div class="mb-3">
           <label class="form-label">{{ field.label }}</label>
-          {{ field|add_class:"form-control bg-dark text-white border-secondary" }}
-          {% if field.help_text %}
-            <small class="form-text text-muted" style="color: #ccc !important;">
-              {{ field.help_text|safe }}
-            </small>
+          {{ field|add_class:"form-control" }}
+          {% if field.errors %}
+            {% for error in field.errors %}
+              <div class="invalid-feedback d-block">{{ error }}</div>
+            {% endfor %}
+          {% endif %}
+
+          {% if field.name == 'password' or field.name == 'password1' %}
+            <small class="form-text oj-text-muted mt-1 d-block">Use 8+ characters. Can't be entirely numeric or too common.</small>
+          {% elif field.name != 'username' and field.help_text %}
+            <small class="form-text oj-text-muted mt-1 d-block">{{ field.help_text|safe }}</small>
           {% endif %}
         </div>
         {% endfor %}
 
-        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+        <button type="submit" class="btn btn-oj-primary w-100 mt-2">Sign Up</button>
       </form>
+      <div class="mt-4 text-center">
+        <span class="oj-text-muted">Already have an account? <a href="{% url 'login' %}" class="fw-semibold">Log in</a></span>
+      </div>
     </div>
   </div>
 </div>

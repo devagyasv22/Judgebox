@@ -283,6 +283,19 @@ html[data-theme="light"] .oj-navbar {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
+/* Auth Card */
+.auth-card-container {
+  padding-top: 60px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-card {
+  max-width: 400px;
+  width: 100%;
+}
+
 /* Footer */
 .oj-footer {
   border-top: 1px solid var(--border);
